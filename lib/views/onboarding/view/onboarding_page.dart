@@ -186,7 +186,6 @@ class OnBoardingView extends StatelessWidget {
                           if(state.isLastPage){
                             Prefs.setOnBoardingVisited();
                             getIt<AppRouter>().replace(const LoginRoute());
-                            return;
                           }
                           pageController.animateToPage(
                             state.currentPage + 1,
