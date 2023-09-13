@@ -8,9 +8,9 @@ import 'package:wallet_wizard/navigation/routes.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: OnBoardingRoute.page, initial: true),
-        AutoRoute(page: LoginRoute.page),
+        AutoRoute(page: OnBoardingRoute.page),
+        AutoRoute(page: LoginRoute.page, guards: [LoginGuard()]),
         AutoRoute(page: OtpRoute.page),
-        AutoRoute(page: HomeRoute.page),
+        AutoRoute(page: HomeRoute.page, initial: true, guards: [HomeGuard()]),
       ];
 }

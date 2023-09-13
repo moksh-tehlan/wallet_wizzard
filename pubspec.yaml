@@ -12,7 +12,11 @@ dependencies:
   auto_route: ^7.8.3
   bloc: ^8.1.2
   build_runner: ^2.4.6
+  dartz: ^0.10.1
+  domain:
+    path: packages/domain
   equatable: ^2.0.5
+  firebase_core: ^2.15.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3

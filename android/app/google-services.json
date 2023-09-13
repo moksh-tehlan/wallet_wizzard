@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "147572946095",
+    "project_id": "wallet-wizzard",
+    "storage_bucket": "wallet-wizzard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147572946095:android:d11337e64acf07aa89d05a",
+        "android_client_info": {
+          "package_name": "com.walletwizard.wallet_wizard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb3MwbnYUWPfTrIta_hLDukbSHQTP5_to"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

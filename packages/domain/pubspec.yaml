@@ -1,0 +1,19 @@
+name: domain
+description: Data Package a middleware between data and ui
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  dartz: ^0.10.1
+  data:
+    path: ../data
+  equatable: ^2.0.5
+  get_it: ^7.6.4
+
+dev_dependencies:
+  mocktail: ^0.3.0
+  test: ^1.19.2
+  very_good_analysis: ^5.0.0

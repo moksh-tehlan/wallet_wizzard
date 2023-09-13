@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 import 'package:wallet_wizard/views/home/view/home_page.dart' as _i1;
 import 'package:wallet_wizard/views/login/view/login_page.dart' as _i2;
 import 'package:wallet_wizard/views/login/view/otp_page.dart' as _i4;
@@ -39,9 +40,14 @@ abstract class $AppRouter extends _i5.RootStackRouter {
       );
     },
     OtpRoute.name: (routeData) {
+      final args = routeData.argsAs<OtpRouteArgs>();
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.OtpPage(),
+        child: _i4.OtpPage(
+          phoneNumber: args.phoneNumber,
+          verificationId: args.verificationId,
+          key: args.key,
+        ),
       );
     },
   };
@@ -91,14 +97,43 @@ class OnBoardingRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.OtpPage]
-class OtpRoute extends _i5.PageRouteInfo<void> {
-  const OtpRoute({List<_i5.PageRouteInfo>? children})
-      : super(
+class OtpRoute extends _i5.PageRouteInfo<OtpRouteArgs> {
+  OtpRoute({
+    required String phoneNumber,
+    required String verificationId,
+    _i6.Key? key,
+    List<_i5.PageRouteInfo>? children,
+  }) : super(
           OtpRoute.name,
+          args: OtpRouteArgs(
+            phoneNumber: phoneNumber,
+            verificationId: verificationId,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'OtpRoute';
 
-  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
+  static const _i5.PageInfo<OtpRouteArgs> page =
+      _i5.PageInfo<OtpRouteArgs>(name);
+}
+
+class OtpRouteArgs {
+  const OtpRouteArgs({
+    required this.phoneNumber,
+    required this.verificationId,
+    this.key,
+  });
+
+  final String phoneNumber;
+
+  final String verificationId;
+
+  final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'OtpRouteArgs{phoneNumber: $phoneNumber, verificationId: $verificationId, key: $key}';
+  }
 }
