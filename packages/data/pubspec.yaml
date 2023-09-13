@@ -1,0 +1,20 @@
+name: data
+description: Data Package for handling all network related things
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  dartz: ^0.10.1
+  data_connection_checker_tv: ^0.3.5-nullsafety
+  domain:
+    path: ../domain
+  firebase_auth: ^4.9.0
+  get_it: ^7.6.4
+
+dev_dependencies:
+  mocktail: ^0.3.0
+  test: ^1.19.2
+  very_good_analysis: ^5.0.0

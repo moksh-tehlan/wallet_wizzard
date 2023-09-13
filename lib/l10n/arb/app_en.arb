@@ -5,5 +5,10 @@
   "lorumIpsum": "Lorem ipsum something there what i dont know is here thanks a lot",
   "trackYourSpend": "Track your spend\nand income",
   "analyzeYourSpendings": "Analyze your\nspendings",
-  "getStarted": "Get Started"
+  "getStarted": "Get Started",
+  "enterYourNumber": "Please enter your\nMobile number to continue",
+  "phoneNumberHint": "Phone number",
+  "invalidMobileNumber": "Invalid mobile number",
+  "enterYourOtp": "Enter the code\nWe sent to",
+  "wrongOtp": "Wrong OTP"
 }
