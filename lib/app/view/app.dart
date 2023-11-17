@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:wallet_wizard/di/service_locator.dart';
 import 'package:wallet_wizard/l10n/l10n.dart';
 import 'package:wallet_wizard/navigation/routes.dart';
-import 'package:wallet_wizard/views/onboarding/view/onboarding_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,7 +12,8 @@ class App extends StatelessWidget {
     final appRouter = getIt.get<AppRouter>();
     return MaterialApp.router(
       routerConfig: appRouter.config(),
-      theme: const AppTheme().themeData,
+      theme: const AppTheme().lightThemeData,
+      darkTheme: const AppTheme().darkThemeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
     );

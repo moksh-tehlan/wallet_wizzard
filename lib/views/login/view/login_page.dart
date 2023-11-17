@@ -34,29 +34,18 @@ class LoginPageView extends StatelessWidget {
       listener: (context, state) {
         if (state is OtpSent) {
           getIt<AppRouter>().push(
-            OtpRoute(
-              phoneNumber: state.phoneNumber,
-              verificationId: state.verificationId,
-            ),
+          OtpRoute(
+            phoneNumber: state.phoneNumber,
+            verificationId: state.verificationId,
+          ),
           );
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          padding: const EdgeInsets.all(20).responsive(context),
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.lavenderPink,
-                Colors.white,
-                AppColors.lavenderPink,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: SafeArea(
+        body: SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20).responsive(context),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,87 +54,33 @@ class LoginPageView extends StatelessWidget {
                 ),
                 Text(
                   context.l10n.enterYourNumber,
-                  style: context.textTheme.headlineMedium
-                      ?.copyWith(color: AppColors.midnightPurple),
+                  style: context.textTheme.headlineMedium,
                 ),
                 SizedBox(
                   height: 35.toResponsiveHeight(context),
                 ),
-                Container(
-                  height: 65.toResponsiveHeight(context),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.toResponsiveWidth(context),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.lavenderPink,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '+91 | ',
-                        style: context.textTheme.headlineSmall?.copyWith(
-                          color: AppColors.midnightPurple,
-                          fontWeight: AppFontWeight.bold,
-                        ),
-                      ),
-                      Expanded(
-                        child: TextField(
-                          controller: textController,
-                          maxLength: 10,
-                          onChanged: (value) {
-                            context.read<AuthBloc>().add(const InitialEvent());
-                          },
-                          style: context.textTheme.titleLarge?.copyWith(
-                            color: AppColors.midnightPurple,
-                            fontWeight: AppFontWeight.bold,
-                          ),
-                          keyboardType: TextInputType.number,
-                          cursorColor: AppColors.lilacGray,
-                          decoration: InputDecoration(
-                            fillColor: AppColors.lavenderPink,
-                            isDense: true,
-                            counterText: '',
-                            border: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            hintText: context.l10n.phoneNumberHint,
-                            hintStyle: context.textTheme.titleLarge
-                                ?.copyWith(color: AppColors.lilacGray),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 5.toResponsiveHeight(context),
-                ),
                 BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, state) {
-                    if (state is Error) {
-                      return Row(
-                        children: [
-                          const Icon(
-                            Icons.warning_amber_rounded,
-                            color: AppColors.red,
-                            size: 13,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            state.error,
-                            style: context.textTheme.titleSmall?.copyWith(
-                              color: AppColors.red,
-                              fontSize: 13,
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                    return const SizedBox();
+                    final errorText = (state is Error) ? state.error : null;
+                    return TextField(
+                      controller: textController,
+                      maxLength: 10,
+                      onChanged: (value) {
+                        context.read<AuthBloc>().add(const InitialEvent());
+                      },
+                      style: Theme.of(context).textTheme.titleLarge,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        prefixText: '+91 | ',
+                        suffixIcon:
+                            state is Error ? const Icon(Icons.error) : null,
+                        border: const OutlineInputBorder(),
+                        errorText: errorText,
+                        isDense: true,
+                        counterText: '',
+                        labelText: context.l10n.phoneNumberHint,
+                      ),
+                    );
                   },
                 ),
                 SizedBox(
@@ -156,8 +91,13 @@ class LoginPageView extends StatelessWidget {
                     const Spacer(),
                     BlocBuilder<AuthBloc, AuthState>(
                       builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () {
+                        return ElevatedButton(
+                          style: ButtonStyle(
+                            fixedSize: MaterialStateProperty.all<Size>(
+                              const Size(170, 60),
+                            ),
+                          ),
+                          onPressed: () {
                             if (state is Loading) return;
                             if (!phoneRegex
                                 .hasMatch(textController.value.text)) {
@@ -175,31 +115,18 @@ class LoginPageView extends StatelessWidget {
                                   ),
                                 );
                           },
-                          child: Container(
-                            height: 55.toResponsiveHeight(context),
-                            width: 170.toResponsiveWidth(context),
-                            margin: const EdgeInsets.only(bottom: 20)
-                                .responsive(context),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: AppColors.electricPurple,
-                            ),
-                            child: state is Loading
-                                ? Center(
-                                    child: SizedBox(
-                                      width: 23.toResponsiveWidth(context),
-                                      height: 23.toResponsiveWidth(context),
-                                      child: const CircularProgressIndicator(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  )
-                                : const Icon(
-                                    Icons.arrow_right_alt_rounded,
-                                    color: AppColors.white, // Arrow icon
-                                    size: 40,
+                          child: state is Loading
+                              ? Center(
+                                  child: SizedBox(
+                                    width: 23.toResponsiveWidth(context),
+                                    height: 23.toResponsiveWidth(context),
+                                    child: const CircularProgressIndicator(),
                                   ),
-                          ),
+                                )
+                              : const Icon(
+                                  Icons.arrow_right_alt_rounded,
+                                  size: 40,
+                                ),
                         );
                       },
                     ),

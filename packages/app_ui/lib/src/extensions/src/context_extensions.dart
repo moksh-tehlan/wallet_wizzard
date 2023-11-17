@@ -25,3 +25,9 @@ extension TextThemeExtension on BuildContext {
     return Theme.of(this).textTheme;
   }
 }
+
+extension ColorThemeExtension on BuildContext {
+  bool get isDarkMode {
+    return MediaQuery.of(this).platformBrightness == Brightness.dark;
+  }
+}

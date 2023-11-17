@@ -32,145 +32,123 @@ class OnBoardingView extends StatelessWidget {
     final pageController = onBoardingCubit.state.pageController;
 
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.lavenderPink,
-              Colors.white,
-              AppColors.lavenderPink,
-            ],
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Spacer(),
-                  BlocBuilder<OnBoardingCubit, OnBoardingState>(
-                    builder: (context, state) {
-                      return Container(
-                        margin: const EdgeInsets.only(top: 20, right: 20)
-                            .responsive(context),
-                        height: 40.toResponsiveHeight(context),
-                        child: Visibility(
-                          visible: !state.isLastPage,
-                          child: GestureDetector(
-                            onTap: () {
-                              pageController.animateToPage(
-                                onBoardingCubit.state.maxPage - 1,
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                            child: Container(
-                              width: 70.toResponsiveWidth(context),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: AppColors.paleLavender,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  context.l10n.skip,
-                                  style: context.textTheme.bodyMedium?.copyWith(
-                                    color: AppColors.lilacGray,
-                                  ),
-                                ),
-                              ),
-                            ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Spacer(),
+                BlocBuilder<OnBoardingCubit, OnBoardingState>(
+                  builder: (context, state) {
+                    return Container(
+                      margin: const EdgeInsets.only(top: 20, right: 20)
+                          .responsive(context),
+                      height: 40.toResponsiveHeight(context),
+                      child: Visibility(
+                        visible: !state.isLastPage,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            pageController.animateToPage(
+                              onBoardingCubit.state.maxPage - 1,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                          child: Text(
+                            context.l10n.skip,
+                            style: context.textTheme.bodyMedium,
                           ),
                         ),
-                      );
-                    },
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 600.toResponsiveHeight(context),
+              child: PageView(
+                controller: pageController,
+                onPageChanged: onBoardingCubit.navigateToPage,
+                children: [
+                  _OnBoardingPageContent(
+                    image: Image.asset(
+                      Assets.jarImage,
+                      height: 400.toResponsiveHeight(context),
+                      fit: BoxFit.fitHeight,
+                    ),
+                    headingText: context.l10n.saveForFuture,
+                    subHeadingText: context.l10n.lorumIpsum,
+                  ),
+                  _OnBoardingPageContent(
+                    image: Image.asset(
+                      Assets.expensesImage,
+                      height: 400.toResponsiveHeight(context),
+                      fit: BoxFit.fitHeight,
+                    ),
+                    headingText: context.l10n.trackYourSpend,
+                    subHeadingText: context.l10n.lorumIpsum,
+                  ),
+                  _OnBoardingPageContent(
+                    image: Image.asset(
+                      Assets.analysisImage,
+                      height: 400.toResponsiveHeight(context),
+                      fit: BoxFit.fitHeight,
+                    ),
+                    headingText: context.l10n.analyzeYourSpendings,
+                    subHeadingText: context.l10n.lorumIpsum,
                   ),
                 ],
               ),
-              SizedBox(
-                height: 600.toResponsiveHeight(context),
-                child: PageView(
-                  controller: pageController,
-                  onPageChanged: onBoardingCubit.navigateToPage,
-                  children: [
-                    _OnBoardingPageContent(
-                      image: Image.asset(
-                        Assets.jarImage,
-                        height: 400.toResponsiveHeight(context),
-                        fit: BoxFit.fitHeight,
-                      ),
-                      headingText: context.l10n.saveForFuture,
-                      subHeadingText: context.l10n.lorumIpsum,
-                    ),
-                    _OnBoardingPageContent(
-                      image: Image.asset(
-                        Assets.expensesImage,
-                        height: 400.toResponsiveHeight(context),
-                        fit: BoxFit.fitHeight,
-                      ),
-                      headingText: context.l10n.trackYourSpend,
-                      subHeadingText: context.l10n.lorumIpsum,
-                    ),
-                    _OnBoardingPageContent(
-                      image: Image.asset(
-                        Assets.analysisImage,
-                        height: 400.toResponsiveHeight(context),
-                        fit: BoxFit.fitHeight,
-                      ),
-                      headingText: context.l10n.analyzeYourSpendings,
-                      subHeadingText: context.l10n.lorumIpsum,
-                    ),
-                  ],
-                ),
+            ),
+            SmoothPageIndicator(
+              controller: pageController,
+              count: 3,
+              effect: WormEffect(
+                dotHeight: 12,
+                dotWidth: 12,
+                activeDotColor: context.isDarkMode
+                    ? AppColors.darkColorScheme.primary
+                    : AppColors.lightColorScheme.primary,
+                dotColor: context.isDarkMode
+                    ? AppColors.darkColorScheme.outline
+                    : AppColors.lightColorScheme.outline,
               ),
-              SmoothPageIndicator(
-                controller: pageController,
-                count: 3,
-                effect: const WormEffect(
-                  dotHeight: 12,
-                  dotWidth: 12,
-                  activeDotColor: AppColors.midnightPurple,
-                  dotColor: AppColors.lilacGray,
-                ),
-                onDotClicked: (index) {
-                  pageController.animateToPage(
-                    index,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              const Spacer(),
-              Row(
+              onDotClicked: (index) {
+                pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20).responsive(context),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BlocBuilder<OnBoardingCubit, OnBoardingState>(
                     builder: (context, state) {
                       return Visibility(
                         visible: state.currentPage != 0,
-                        child: GestureDetector(
-                          onTap: () {
+                        child: ElevatedButton(
+                          onPressed: () {
                             pageController.animateToPage(
                               onBoardingCubit.state.currentPage - 1,
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                             );
                           },
-                          child: Container(
-                            height: 55.toResponsiveHeight(context),
-                            width: 55.toResponsiveWidth(context),
-                            margin: const EdgeInsets.only(bottom: 20)
-                                .responsive(context),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: AppColors.paleLavender,
+                          style: ButtonStyle(
+                            fixedSize: MaterialStateProperty.all<Size>(
+                              const Size(80, 60),
                             ),
-                            child: const Icon(
-                              Icons.arrow_back_rounded,
-                              color: AppColors.lilacGray, // Arrow icon
-                              size: 25,
-                            ),
+                          ),
+                          child: const Icon(
+                            Icons.arrow_back_rounded,
+                            // color: AppColors.lilacGray, // Arrow icon
+                            size: 25,
                           ),
                         ),
                       );
@@ -181,9 +159,9 @@ class OnBoardingView extends StatelessWidget {
                   ),
                   BlocBuilder<OnBoardingCubit, OnBoardingState>(
                     builder: (context, state) {
-                      return GestureDetector(
-                        onTap: () {
-                          if(state.isLastPage){
+                      return ElevatedButton(
+                        onPressed: () {
+                          if (state.isLastPage) {
                             Prefs.setOnBoardingVisited();
                             getIt<AppRouter>().replace(const LoginRoute());
                           }
@@ -193,38 +171,30 @@ class OnBoardingView extends StatelessWidget {
                             curve: Curves.easeInOut,
                           );
                         },
-                        child: Container(
-                          height: 55.toResponsiveHeight(context),
-                          width: 170.toResponsiveWidth(context),
-                          margin: const EdgeInsets.only(bottom: 20)
-                              .responsive(context),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: state.isLastPage
-                                ? AppColors.electricPurple
-                                : AppColors.paleLavender,
+                        style: ButtonStyle(
+                          fixedSize: MaterialStateProperty.all<Size>(
+                            const Size(150, 60),
                           ),
-                          child: state.isLastPage
-                              ? Center(
-                                  child: Text(
-                                    context.l10n.getStarted,
-                                    style: context.textTheme.bodyLarge
-                                        ?.copyWith(color: AppColors.white),
-                                  ),
-                                )
-                              : const Icon(
-                                  Icons.arrow_right_alt_rounded,
-                                  color: AppColors.lilacGray, // Arrow icon
-                                  size: 40,
-                                ),
                         ),
+                        child: state.isLastPage
+                            ? Center(
+                                child: Text(
+                                  context.l10n.getStarted,
+                                  style: context.textTheme.bodyLarge,
+                                ),
+                              )
+                            : const Icon(
+                                Icons.arrow_right_alt_rounded,
+                                size: 40,
+                              ),
+                        // ),
                       );
                     },
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -250,15 +220,13 @@ class _OnBoardingPageContent extends StatelessWidget {
         Text(
           headingText,
           textAlign: TextAlign.center,
-          style: context.textTheme.displayLarge
-              ?.copyWith(color: AppColors.midnightPurple),
+          style: context.textTheme.displayLarge,
         ),
         SizedBox(
           width: 250.toResponsiveWidth(context),
           child: Text(
             subHeadingText,
-            style: context.textTheme.bodyLarge
-                ?.copyWith(color: AppColors.lilacGray),
+            style: context.textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ),
         ),

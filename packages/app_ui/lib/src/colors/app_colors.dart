@@ -1,209 +1,75 @@
 import 'package:flutter/material.dart';
 //ignore_for_file:public_member_api_docs
 
+
 /// Defines the color palette for the App UI Kit.
 abstract class AppColors {
-  /// Black
-  static const Color black = Color(0xFF000000);
 
-  /// Spiro Disco Ball
-  static const Color spiroDiscoBall = Color(0xFF26C1FC);
-  static const Color spiroDiscoBallDark = Color(0xFF1293c4);
+  static const lightColorScheme = ColorScheme(
+    brightness: Brightness.light,
+    primary: Color(0xFF3C5BA9),
+    onPrimary: Color(0xFFFFFFFF),
+    primaryContainer: Color(0xFFDAE1FF),
+    onPrimaryContainer: Color(0xFF001849),
+    secondary: Color(0xFF585E71),
+    onSecondary: Color(0xFFFFFFFF),
+    secondaryContainer: Color(0xFFDDE2F9),
+    onSecondaryContainer: Color(0xFF151B2C),
+    tertiary: Color(0xFF735471),
+    onTertiary: Color(0xFFFFFFFF),
+    tertiaryContainer: Color(0xFFFED6F9),
+    onTertiaryContainer: Color(0xFF2B122B),
+    error: Color(0xFFBA1A1A),
+    errorContainer: Color(0xFFFFDAD6),
+    onError: Color(0xFFFFFFFF),
+    onErrorContainer: Color(0xFF410002),
+    background: Color(0xFFFEFBFF),
+    onBackground: Color(0xFF1B1B1F),
+    surface: Color(0xFFFEFBFF),
+    onSurface: Color(0xFF1B1B1F),
+    surfaceVariant: Color(0xFFE1E2EC),
+    onSurfaceVariant: Color(0xFF45464F),
+    outline: Color(0xFF757680),
+    onInverseSurface: Color(0xFFF2F0F4),
+    inverseSurface: Color(0xFF303034),
+    inversePrimary: Color(0xFFB3C5FF),
+    shadow: Color(0xFF000000),
+    surfaceTint: Color(0xFF3C5BA9),
+    outlineVariant: Color(0xFFC5C6D0),
+    scrim: Color(0xFF000000),
+  );
 
-  /// blueberry
-  static const Color blueberry = Color(0xFF5498FE);
-  static const Color blueberryDark = Color(0xFF448AF9);
-
-  /// Pale Violet
-  static const Color paleViolet = Color(0xFFBF8FFD);
-
-  /// Princess Perfume
-  static const Color princessPerfume = Color(0xFFFF8AD1);
-
-  /// Bright Yellow
-  static const Color brightYellow = Color(0xFFFFB525);
-
-  /// Kiwi
-  static const Color kiwi = Color(0xFF8DD54F);
-
-  /// Light black
-  static const Color lightBlack = Colors.black54;
-
-  /// White
-  static const Color white = Color(0xFFFFFFFF);
-
-  /// Transparent
-  static const Color transparent = Color(0x00000000);
-
-  /// The grey primary color and swatch.
-  static const MaterialColor grey = Colors.grey;
-
-  /// The liver color.
-  static const Color liver = Color(0xFF4D4D4D);
-  static const baseColor = Color.fromRGBO(224, 224, 224, 100);
-  static const flashWhite = Color(0xFFF2F4F8);
-  static const highlight = Color(0xF5F5F5FF);
-
-  /// The green primary color and swatch.
-  static const MaterialColor green = Colors.green;
-
-  /// The teal primary color and swatch.
-  static const MaterialColor teal = Colors.teal;
-
-  /// The dark aqua color.
-  static const Color darkAqua = Color(0xFF00677F);
-
-  /// The blue primary color and swatch.
-  static const Color blue = Color(0xFF3898EC);
-
-  /// The sky blue color.
-  static const Color skyBlue = Color(0xFF0175C2);
-
-  /// The ocean blue color.
-  static const Color oceanBlue = Color(0xFF02569B);
-
-  /// The light blue color.
-  static const MaterialColor lightBlue = Colors.lightBlue;
-
-  /// The blue dress color.
-  static const Color blueDress = Color(0xFF1877F2);
-
-  /// The crystal blue color.
-  static const Color crystalBlue = Color(0xFF55ACEE);
-
-  /// The light surface2 dress color.
-  static const Color surface2 = Color(0xFFEBF2F7);
-
-  /// The pale sky color.
-  static const Color paleSky = Color(0xFF73777F);
-
-  /// The input hover color.
-  static const Color inputHover = Color(0xFFE4E4E4);
-
-  /// The input focused color.
-  static const Color inputFocused = Color(0xFFD1D1D1);
-
-  /// The input enabled color.
-  static const Color inputEnabled = Color(0xFFEDEDED);
-
-  /// The pastel grey color.
-  static const Color pastelGrey = Color(0xFFCCCCCC);
-
-  /// The bright grey color.
-  static const Color brightGrey = Color(0xFFEAEAEA);
-
-  static const Color maize = Color(0xFFFFCB45);
-  static const Color marigold = Color(0xFFF29C1F);
-
-  /// The yellow primary color.
-  static const MaterialColor yellow = Colors.yellow;
-
-  /// The red primary color and swatch.
-  static const MaterialColor red = Colors.red;
-
-  /// The background color.
-  static const Color background = Color(0xFFFFFFFF);
-
-  /// The dark background color.
-  static const Color darkBackground = Color(0xFF001F28);
-
-  /// The on-background color.
-  static const Color onBackground = Color(0xFF1A1A1A);
-
-  /// The primary container color.
-  static const Color primaryContainer = Color(0xFFB1EBFF);
-
-  /// The dark text 1 color.
-  static const Color darkText1 = Color(0xFFFCFCFC);
-
-  /// The red wine color.
-  static const Color redWine = Color(0xFF9A031E);
-
-  /// The rangoonGreen color.
-  static const Color rangoonGreen = Color(0xFF1B1B1B);
-
-  /// The modal background color.
-  static const Color modalBackground = Color(0xFFEBF2F7);
-
-  /// The eerie black color.
-  static const Color eerieBlack = Color(0xFF191C1D);
-
-  /// The medium emphasis primary color.
-  static const Color mediumEmphasisPrimary = Color(0xBDFFFFFF);
-
-  /// The medium emphasis surface color.
-  static const Color mediumEmphasisSurface = Color(0x99000000);
-
-  /// The high emphasis primary color.
-  static const Color highEmphasisPrimary = Color(0xFCFFFFFF);
-
-  /// The high emphasis surface color.
-  static const Color highEmphasisSurface = Color(0xE6000000);
-
-  /// The border outline color.
-  static const Color borderOutline = Color(0x33000000);
-
-  /// The light outline color.
-  static const Color outlineLight = Color(0x33000000);
-
-  /// The outline on dark color.
-  static const Color outlineOnDark = Color(0x29FFFFFF);
-
-  /// The secondary color of application.
-  static const MaterialColor secondary = MaterialColor(0xFF963F6E, <int, Color>{
-    50: Color(0xFFFFECF3),
-    100: Color(0xFFFFD8E9),
-    200: Color(0xFFFFAFD6),
-    300: Color(0xFFF28ABE),
-    400: Color(0xFFD371A3),
-    500: Color(0xFFB55788),
-    600: Color(0xFF963F6E),
-    700: Color(0xFF7A2756),
-    800: Color(0xFF5F0F40),
-    900: Color(0xFF3D0026),
-  });
-  static const MaterialColor secondary2 =
-      MaterialColor(0xFFFFCB45, <int, Color>{
-    50: Color(0xFFFFFFCC),
-    100: Color(0xFFFFF999),
-    200: Color(0xFFFFF666),
-    300: Color(0xFFFFF333),
-    400: Color(0xFFFFE07E),
-    500: Color(0xFFFFB423),
-    600: Color(0xFFE6A133),
-    700: Color(0xFFCC8822),
-    800: Color(0xFFB37011),
-    900: Color(0xFF995C00),
-  });
-
-  /// The medium high emphasis primary color.
-  static const Color mediumHighEmphasisPrimary = Color(0xE6FFFFFF);
-
-  /// The medium high emphasis surface color.
-  static const Color mediumHighEmphasisSurface = Color(0xB3000000);
-
-  /// The default disabled foreground color.
-  static const Color disabledForeground = Color(0x611B1B1B);
-
-  /// The default disabled button color.
-  static const Color disabledButton = Color(0x1F000000);
-
-  /// The default disabled surface color.
-  static const Color disabledSurface = Color(0xFFE0E0E0);
-
-  /// The gainsboro color.
-  static const Color gainsboro = Color(0xFFDADCE0);
-
-  /// The orange color.
-  static const Color orange = Color(0xFFFB8B24);
-
-  static const Color lavenderPink = Color(0xFFF8E6F2);
-
-  static const Color paleLavender = Color(0xFFE9DBEC);
-
-  static const Color lilacGray = Color(0xFF948D9E);
-
-  static const Color midnightPurple = Color(0xFF220D55);
-
-  static const Color electricPurple = Color(0xFF7C4CE0);
+  static const darkColorScheme = ColorScheme(
+    brightness: Brightness.dark,
+    primary: Color(0xFFB3C5FF),
+    onPrimary: Color(0xFF002B74),
+    primaryContainer: Color(0xFF20428F),
+    onPrimaryContainer: Color(0xFFDAE1FF),
+    secondary: Color(0xFFC0C6DD),
+    onSecondary: Color(0xFF2A3042),
+    secondaryContainer: Color(0xFF414659),
+    onSecondaryContainer: Color(0xFFDDE2F9),
+    tertiary: Color(0xFFE1BBDC),
+    onTertiary: Color(0xFF422741),
+    tertiaryContainer: Color(0xFF5A3D58),
+    onTertiaryContainer: Color(0xFFFED6F9),
+    error: Color(0xFFFFB4AB),
+    errorContainer: Color(0xFF93000A),
+    onError: Color(0xFF690005),
+    onErrorContainer: Color(0xFFFFDAD6),
+    background: Color(0xFF1B1B1F),
+    onBackground: Color(0xFFE4E2E6),
+    surface: Color(0xFF1B1B1F),
+    onSurface: Color(0xFFE4E2E6),
+    surfaceVariant: Color(0xFF45464F),
+    onSurfaceVariant: Color(0xFFC5C6D0),
+    outline: Color(0xFF8F909A),
+    onInverseSurface: Color(0xFF1B1B1F),
+    inverseSurface: Color(0xFFE4E2E6),
+    inversePrimary: Color(0xFF3C5BA9),
+    shadow: Color(0xFF000000),
+    surfaceTint: Color(0xFFB3C5FF),
+    outlineVariant: Color(0xFF45464F),
+    scrim: Color(0xFF000000),
+  );
 }
