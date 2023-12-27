@@ -36,7 +36,7 @@ class _TabPageViewState extends State<TabPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: list[currentPageIndex]),
+      body: list[currentPageIndex],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (index) {
           setState(() {
@@ -48,17 +48,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.savingsIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
+              color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.savingsFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
+              color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
@@ -67,17 +63,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.incomeIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
+              color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.incomeFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
+              color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
@@ -86,17 +78,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.expensesIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
+              color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.expensesFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
+              color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
@@ -105,17 +93,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.debtIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
+              color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.debtFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
+              color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
