@@ -4,20 +4,21 @@ import 'package:wallet_wizard/views/tab/view/expenses/tabs/expenses_page.dart';
 import 'package:wallet_wizard/views/tab/view/expenses/tabs/income_page.dart';
 import 'package:wallet_wizard/views/tab/view/expenses/tabs/investment_page.dart';
 
-class BooksPage extends StatefulWidget {
-  const BooksPage({super.key});
+class PassbookPage extends StatefulWidget {
+  const PassbookPage({super.key});
 
   @override
-  State<BooksPage> createState() => _BooksPageState();
+  State<PassbookPage> createState() => _PassbookPageState();
 }
 
-class _BooksPageState extends State<BooksPage> with TickerProviderStateMixin {
+class _PassbookPageState extends State<PassbookPage>
+    with TickerProviderStateMixin {
   late final TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -47,7 +48,7 @@ class _BooksPageState extends State<BooksPage> with TickerProviderStateMixin {
                   icon: Icon(Icons.download),
                   iconMargin: EdgeInsets.only(bottom: 1),
                   child: Text(
-                    'Credits',
+                    'Income',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -55,7 +56,15 @@ class _BooksPageState extends State<BooksPage> with TickerProviderStateMixin {
                   icon: Icon(Icons.upload),
                   iconMargin: EdgeInsets.only(bottom: 1),
                   child: Text(
-                    'Debts',
+                    'Expenses',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+                Tab(
+                  icon: Icon(Icons.trending_up),
+                  iconMargin: EdgeInsets.only(bottom: 1),
+                  child: Text(
+                    'Investment',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -68,6 +77,7 @@ class _BooksPageState extends State<BooksPage> with TickerProviderStateMixin {
           children: const [
             IncomePage(),
             ExpensesPage(),
+            InvestmentPage(),
           ],
         ),
       ),

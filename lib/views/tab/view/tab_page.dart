@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet_wizard/views/tab/view/books_page/view/books_page.dart';
-import 'package:wallet_wizard/views/tab/view/expenses/view/expenses_page.dart';
+import 'package:wallet_wizard/views/tab/view/expenses/view/passbook.dart';
 import 'package:wallet_wizard/views/tab/view/home/view/home_page.dart';
 import 'package:wallet_wizard/views/tab/view/profile/view/profile_page.dart';
 
@@ -28,9 +28,9 @@ class _TabPageViewState extends State<TabPageView> {
   int currentPageIndex = 0;
   final list = [
     const HomePage(),
-    const ProfilePage(),
-    const ExpensesPage(),
+    const PassbookPage(),
     const BooksPage(),
+    const ProfilePage(),
   ];
 
   @override
@@ -58,22 +58,7 @@ class _TabPageViewState extends State<TabPageView> {
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
-            label: 'Savings',
-          ),
-          NavigationDestination(
-            icon: SvgPicture.asset(
-              Assets.incomeIcon,
-              color: context.colorScheme.onSurfaceVariant,
-              height: 22.toResponsiveWidth(context),
-              width: 22.toResponsiveWidth(context),
-            ),
-            selectedIcon: SvgPicture.asset(
-              Assets.incomeFilledIcon,
-              color: context.colorScheme.onSecondaryContainer,
-              height: 22.toResponsiveWidth(context),
-              width: 22.toResponsiveWidth(context),
-            ),
-            label: 'Income',
+            label: 'Home',
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
@@ -88,22 +73,37 @@ class _TabPageViewState extends State<TabPageView> {
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
-            label: 'Expenses',
+            label: 'Passbook',
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
-              Assets.debtIcon,
+              Assets.booksIcon,
               color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
-              Assets.debtFilledIcon,
+              Assets.booksFilledIcon,
               color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
-            label: 'Debt',
+            label: 'Books',
+          ),
+          NavigationDestination(
+            icon: SvgPicture.asset(
+              Assets.profileIcon,
+              color: context.colorScheme.onSurfaceVariant,
+              height: 22.toResponsiveWidth(context),
+              width: 22.toResponsiveWidth(context),
+            ),
+            selectedIcon: SvgPicture.asset(
+              Assets.profileFilledIcon,
+              color: context.colorScheme.onSecondaryContainer,
+              height: 22.toResponsiveWidth(context),
+              width: 22.toResponsiveWidth(context),
+            ),
+            label: 'Profile',
           ),
         ],
       ),
