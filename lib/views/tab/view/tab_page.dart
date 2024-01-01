@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet_wizard/views/tab/view/books_page/view/books_page.dart';
-import 'package:wallet_wizard/views/tab/view/expenses/view/expenses_page.dart';
+import 'package:wallet_wizard/views/tab/view/expenses/view/passbook.dart';
 import 'package:wallet_wizard/views/tab/view/home/view/home_page.dart';
 import 'package:wallet_wizard/views/tab/view/profile/view/profile_page.dart';
 
@@ -28,15 +28,15 @@ class _TabPageViewState extends State<TabPageView> {
   int currentPageIndex = 0;
   final list = [
     const HomePage(),
-    const ProfilePage(),
-    const ExpensesPage(),
+    const PassbookPage(),
     const BooksPage(),
+    const ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: list[currentPageIndex]),
+      body: list[currentPageIndex],
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (index) {
           setState(() {
@@ -48,78 +48,62 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.savingsIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
+              color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.savingsFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
+              color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
-            label: 'Savings',
-          ),
-          NavigationDestination(
-            icon: SvgPicture.asset(
-              Assets.incomeIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
-              height: 22.toResponsiveWidth(context),
-              width: 22.toResponsiveWidth(context),
-            ),
-            selectedIcon: SvgPicture.asset(
-              Assets.incomeFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
-              height: 22.toResponsiveWidth(context),
-              width: 22.toResponsiveWidth(context),
-            ),
-            label: 'Income',
+            label: 'Home',
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.expensesIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
+              color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.expensesFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
+              color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
-            label: 'Expenses',
+            label: 'Passbook',
           ),
           NavigationDestination(
             icon: SvgPicture.asset(
-              Assets.debtIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSurfaceVariant
-                  : AppColors.lightColorScheme.onSurfaceVariant,
+              Assets.booksIcon,
+              color: context.colorScheme.onSurfaceVariant,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
-              Assets.debtFilledIcon,
-              color: context.isDarkMode
-                  ? AppColors.darkColorScheme.onSecondaryContainer
-                  : AppColors.lightColorScheme.onSecondaryContainer,
+              Assets.booksFilledIcon,
+              color: context.colorScheme.onSecondaryContainer,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
-            label: 'Debt',
+            label: 'Books',
+          ),
+          NavigationDestination(
+            icon: SvgPicture.asset(
+              Assets.profileIcon,
+              color: context.colorScheme.onSurfaceVariant,
+              height: 22.toResponsiveWidth(context),
+              width: 22.toResponsiveWidth(context),
+            ),
+            selectedIcon: SvgPicture.asset(
+              Assets.profileFilledIcon,
+              color: context.colorScheme.onSecondaryContainer,
+              height: 22.toResponsiveWidth(context),
+              width: 22.toResponsiveWidth(context),
+            ),
+            label: 'Profile',
           ),
         ],
       ),

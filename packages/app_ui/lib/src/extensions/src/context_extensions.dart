@@ -1,3 +1,4 @@
+import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 //ignore_for_file:public_member_api_docs
 
@@ -29,5 +30,9 @@ extension TextThemeExtension on BuildContext {
 extension ColorThemeExtension on BuildContext {
   bool get isDarkMode {
     return MediaQuery.of(this).platformBrightness == Brightness.dark;
+  }
+
+  ColorScheme get colorScheme {
+    return isDarkMode ? AppColors.darkColorScheme : AppColors.lightColorScheme;
   }
 }
