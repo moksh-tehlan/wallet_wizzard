@@ -36,7 +36,7 @@ class HomePageView extends StatelessWidget {
                         vertical: 35,
                       ).responsive(context),
                       decoration: BoxDecoration(
-                        color: context.colorScheme.surfaceVariant,
+                        color: context.appColorScheme.appBar,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class HomePageView extends StatelessWidget {
                         width:
                             context.screenWidth - 35.toResponsiveWidth(context),
                         decoration: BoxDecoration(
-                          color: context.colorScheme.surfaceVariant,
+                          color: context.appColorScheme.secondaryAppBar,
                           boxShadow: [
                             BoxShadow(
                               color: context.colorScheme.surface,
@@ -105,19 +105,17 @@ class HomePageView extends StatelessWidget {
                       top: 115.toResponsiveHeight(context),
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 10.toResponsiveWidth(context),
+                          horizontal: 15.toResponsiveWidth(context),
                           vertical: 2.toResponsiveHeight(context),
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: context.colorScheme.onSurfaceVariant,
+                          color: context.appColorScheme.onAppBarLabel,
                         ),
                         child: Center(
                           child: Text(
                             'Balance',
-                            style: context.textTheme.bodyMedium?.copyWith(
-                              color: context.colorScheme.surface,
-                            ),
+                            style: context.textTheme.bodyMedium,
                           ),
                         ),
                       ),

@@ -7,11 +7,15 @@ class TransactionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10).responsive(context),
+      padding: const EdgeInsets.only(
+        bottom: 10,
+        left: 15,
+        right: 15,
+      ).responsive(context),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10)
             .responsive(context),
-        color: context.colorScheme.surfaceVariant.withOpacity(0.5),
+        color: context.appColorScheme.appBar,
         height: 120.toResponsiveHeight(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,12 +32,12 @@ class TransactionCard extends StatelessWidget {
                             categoryCard(
                               context,
                               'Food',
-                              context.colorScheme.primary,
+                              Colors.blue,
                             ),
                             categoryCard(
                               context,
                               'Cash',
-                              context.colorScheme.tertiary,
+                              Colors.green,
                             ),
                           ],
                         ),
@@ -50,7 +54,7 @@ class TransactionCard extends StatelessWidget {
                   Text(
                     '2,000',
                     style: context.textTheme.titleLarge
-                        ?.copyWith(color: context.colorScheme.error),
+                        ?.copyWith(color: Colors.red),
                   ),
                 ],
               ),
@@ -62,7 +66,8 @@ class TransactionCard extends StatelessWidget {
             Text(
               'Entry at 12:09 AM',
               style: context.textTheme.bodySmall?.copyWith(
-                  color: context.colorScheme.onSurfaceVariant.withOpacity(0.8)),
+                color: context.colorScheme.onSurfaceVariant.withOpacity(0.8),
+              ),
             ),
           ],
         ),
@@ -71,7 +76,10 @@ class TransactionCard extends StatelessWidget {
   }
 
   Padding categoryCard(
-      BuildContext context, String categoryName, Color categoryColor) {
+    BuildContext context,
+    String categoryName,
+    Color categoryColor,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(right: 5).responsive(context),
       child: Container(

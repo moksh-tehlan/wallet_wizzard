@@ -14,6 +14,7 @@ class ExpensesPage extends StatelessWidget {
         child: Column(
           children: [
             const NetBalanceCard(),
+            SizedBox(height: 20.toResponsiveHeight(context),),
             Expanded(
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),

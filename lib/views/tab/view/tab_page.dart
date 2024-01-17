@@ -36,8 +36,13 @@ class _TabPageViewState extends State<TabPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.appColorScheme.background,
       body: list[currentPageIndex],
       bottomNavigationBar: NavigationBar(
+        backgroundColor: context.appColorScheme.background,
+        indicatorColor: context.appColorScheme.primaryColor.withOpacity(0.1),
+        surfaceTintColor: Colors.white,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         onDestinationSelected: (index) {
           setState(() {
             currentPageIndex = index;
@@ -48,13 +53,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.savingsIcon,
-              color: context.colorScheme.onSurfaceVariant,
+              color: Colors.white,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.savingsFilledIcon,
-              color: context.colorScheme.onSecondaryContainer,
+              color: context.appColorScheme.primaryColor,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
@@ -63,13 +68,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.expensesIcon,
-              color: context.colorScheme.onSurfaceVariant,
+              color: Colors.white,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.expensesFilledIcon,
-              color: context.colorScheme.onSecondaryContainer,
+              color: context.appColorScheme.primaryColor,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
@@ -78,13 +83,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.booksIcon,
-              color: context.colorScheme.onSurfaceVariant,
+              color: Colors.white,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.booksFilledIcon,
-              color: context.colorScheme.onSecondaryContainer,
+              color: context.appColorScheme.primaryColor,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
@@ -93,13 +98,13 @@ class _TabPageViewState extends State<TabPageView> {
           NavigationDestination(
             icon: SvgPicture.asset(
               Assets.profileIcon,
-              color: context.colorScheme.onSurfaceVariant,
+              color: Colors.white,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),
             selectedIcon: SvgPicture.asset(
               Assets.profileFilledIcon,
-              color: context.colorScheme.onSecondaryContainer,
+              color: context.appColorScheme.primaryColor,
               height: 22.toResponsiveWidth(context),
               width: 22.toResponsiveWidth(context),
             ),

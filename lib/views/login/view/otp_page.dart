@@ -53,6 +53,7 @@ class OtpPageView extends StatelessWidget {
         }
       },
       child: Scaffold(
+        backgroundColor: context.appColorScheme.background,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -62,19 +63,17 @@ class OtpPageView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all<Size>(
-                      const Size(60, 60),
+                InkWell(
+                  borderRadius: BorderRadius.circular(50),
+                  onTap: () => getIt<AppRouter>().pop(),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 40,
+                    height: 40,
+                    child: const Icon(
+                      Icons.arrow_back_rounded,
+                      size: 35,
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                      EdgeInsets.zero,
-                    ),
-                  ),
-                  onPressed: () => getIt<AppRouter>().pop(),
-                  child: const Icon(
-                    Icons.arrow_back_rounded,
-                    size: 25,
                   ),
                 ),
                 SizedBox(
@@ -103,23 +102,8 @@ class OtpPageView extends StatelessWidget {
                         textStyle: context.textTheme.titleLarge,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: context.isDarkMode
-                                ? AppColors.darkColorScheme.error
-                                : AppColors.lightColorScheme.error,
-                          ),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
-                      focusedPinTheme: PinTheme(
-                        width: 53.toResponsiveWidth(context),
-                        height: 50.toResponsiveHeight(context),
-                        textStyle: context.textTheme.titleLarge,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2,
-                            color: context.isDarkMode
-                                ? AppColors.darkColorScheme.primaryContainer
-                                : AppColors.lightColorScheme.primaryContainer,
+                            color: context.colorScheme.error,
+                            width: 2.5,
                           ),
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -130,9 +114,8 @@ class OtpPageView extends StatelessWidget {
                         textStyle: context.textTheme.titleLarge,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: context.isDarkMode
-                                ? AppColors.darkColorScheme.outline
-                                : AppColors.lightColorScheme.outline,
+                            color: context.appColorScheme.inputBorderColor,
+                            width: 2.5,
                           ),
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -143,51 +126,50 @@ class OtpPageView extends StatelessWidget {
                 SizedBox(
                   height: 25.toResponsiveHeight(context),
                 ),
-                Row(
-                  children: [
-                    const Spacer(),
-                    BlocBuilder<AuthBloc, AuthState>(
-                      builder: (context, state) {
-                        return ElevatedButton(
-                          style: ButtonStyle(
-                            fixedSize: MaterialStateProperty.all<Size>(
-                              const Size(170, 60),
-                            ),
-                          ),
-                          onPressed: () {
-                            if (state is Loading) return;
-                            if (otpController.value.text.length < 6) {
-                              context.read<AuthBloc>().add(
-                                    ErrorEvent(message: context.l10n.wrongOtp),
-                                  );
-                              return;
-                            }
-                            Prefs.setUserExists(userExists: true);
-                            context.read<AuthBloc>().add(
-                                  VerifyOtp(
-                                    otp: otpController.value.text,
-                                    verificationId: verificationId,
-                                  ),
-                                );
-                          },
-                          child: state is Loading
-                              ? Center(
-                                  child: SizedBox(
-                                    width: 23.toResponsiveWidth(context),
-                                    height: 23.toResponsiveWidth(context),
-                                    child: const CircularProgressIndicator(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
-                              : const Icon(
-                                  Icons.arrow_right_alt_rounded,
-                                  size: 40,
-                                ),
-                        );
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    return InkWell(
+                      onTap: () {
+                        if (state is Loading) return;
+                        if (otpController.value.text.length < 6) {
+                          context.read<AuthBloc>().add(
+                                ErrorEvent(message: context.l10n.wrongOtp),
+                              );
+                          return;
+                        }
+                        Prefs.setUserExists(userExists: true);
+                        context.read<AuthBloc>().add(
+                              VerifyOtp(
+                                otp: otpController.value.text,
+                                verificationId: verificationId,
+                              ),
+                            );
                       },
-                    ),
-                  ],
+                      child: Container(
+                        width: context.screenWidth,
+                        height: 60.toResponsiveHeight(context),
+                        decoration: BoxDecoration(
+                          color: context.appColorScheme.primaryColor,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: state is Loading
+                            ? Center(
+                                child: SizedBox(
+                                  width: 23.toResponsiveWidth(context),
+                                  height: 23.toResponsiveWidth(context),
+                                  child: const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              )
+                            : const Icon(
+                                Icons.arrow_right_alt_rounded,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

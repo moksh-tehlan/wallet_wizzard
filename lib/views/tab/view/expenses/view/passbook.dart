@@ -31,44 +31,53 @@ class _PassbookPageState extends State<PassbookPage>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: context.appColorScheme.background,
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: const Icon(Icons.add),
         ),
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: context.appColorScheme.appBar,
           bottom: PreferredSize(
             preferredSize:
                 Size(context.screenWidth, 20.toResponsiveHeight(context)),
-            child: TabBar(
-              padding: EdgeInsets.zero,
-              tabAlignment: TabAlignment.fill,
-              controller: _tabController,
-              tabs: const [
-                Tab(
-                  icon: Icon(Icons.download),
-                  iconMargin: EdgeInsets.only(bottom: 1),
-                  child: Text(
-                    'Income',
-                    style: TextStyle(fontSize: 16),
-                  ),
+            child: Center(
+              child: Theme(
+                data: ThemeData(
+                  splashColor: Colors.transparent,
                 ),
-                Tab(
-                  icon: Icon(Icons.upload),
-                  iconMargin: EdgeInsets.only(bottom: 1),
-                  child: Text(
-                    'Expenses',
-                    style: TextStyle(fontSize: 16),
+                child: TabBar(
+                  controller: _tabController,
+                  isScrollable: true,
+                  labelStyle: context.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                  labelColor: Colors.white,
+                  unselectedLabelStyle: context.textTheme.titleLarge?.copyWith(
+                    fontWeight: AppFontWeight.bold,
                   ),
+                  unselectedLabelColor: Colors.white.withOpacity(0.5),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 34),
+                  // indicatorPadding: EdgeInsets.only(right: 52),
+                  tabs: const [
+                    Tab(
+                      child: Text(
+                        'Income',
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'Expenses',
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'Investment',
+                      ),
+                    ),
+                  ],
                 ),
-                Tab(
-                  icon: Icon(Icons.trending_up),
-                  iconMargin: EdgeInsets.only(bottom: 1),
-                  child: Text(
-                    'Investment',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),

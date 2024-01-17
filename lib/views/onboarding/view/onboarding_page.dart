@@ -108,11 +108,11 @@ class OnBoardingView extends StatelessWidget {
                 dotHeight: 12,
                 dotWidth: 12,
                 activeDotColor: context.isDarkMode
-                    ? AppColors.darkColorScheme.primary
-                    : AppColors.lightColorScheme.primary,
+                    ? TempAppColors.darkColorScheme.primary
+                    : TempAppColors.lightColorScheme.primary,
                 dotColor: context.isDarkMode
-                    ? AppColors.darkColorScheme.outline
-                    : AppColors.lightColorScheme.outline,
+                    ? TempAppColors.darkColorScheme.outline
+                    : TempAppColors.lightColorScheme.outline,
               ),
               onDotClicked: (index) {
                 pageController.animateToPage(

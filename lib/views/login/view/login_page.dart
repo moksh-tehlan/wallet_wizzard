@@ -34,14 +34,15 @@ class LoginPageView extends StatelessWidget {
       listener: (context, state) {
         if (state is OtpSent) {
           getIt<AppRouter>().push(
-          OtpRoute(
-            phoneNumber: state.phoneNumber,
-            verificationId: state.verificationId,
-          ),
+            OtpRoute(
+              phoneNumber: state.phoneNumber,
+              verificationId: state.verificationId,
+            ),
           );
         }
       },
       child: Scaffold(
+        backgroundColor: context.appColorScheme.background,
         body: SafeArea(
           child: Padding(
             padding:
@@ -65,20 +66,47 @@ class LoginPageView extends StatelessWidget {
                     return TextField(
                       controller: textController,
                       maxLength: 10,
+                      cursorColor: context.appColorScheme.primaryColor,
                       onChanged: (value) {
                         context.read<AuthBloc>().add(const InitialEvent());
                       },
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: context.textTheme.headlineMedium?.copyWith(
+                        color: context.appColorScheme.inputTextColor,
+                      ),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         prefixText: '+91 | ',
+                        prefixStyle: context.textTheme.headlineMedium?.copyWith(
+                          color: context.appColorScheme.inputTextColor
+                              .withOpacity(0.8),
+                        ),
                         suffixIcon:
                             state is Error ? const Icon(Icons.error) : null,
-                        border: const OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: context.appColorScheme.inputBorderColor,
+                            width: 2.5,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: context.appColorScheme.inputBorderColor,
+                            width: 2.5,
+                          ),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: context.appColorScheme.inputBorderColor,
+                            width: 2.5,
+                          ),
+                        ),
                         errorText: errorText,
                         isDense: true,
                         counterText: '',
                         labelText: context.l10n.phoneNumberHint,
+                        labelStyle: TextStyle(
+                          color: context.appColorScheme.labelTextColor,
+                        ),
                       ),
                     );
                   },
@@ -86,51 +114,50 @@ class LoginPageView extends StatelessWidget {
                 SizedBox(
                   height: 25.toResponsiveHeight(context),
                 ),
-                Row(
-                  children: [
-                    const Spacer(),
-                    BlocBuilder<AuthBloc, AuthState>(
-                      builder: (context, state) {
-                        return ElevatedButton(
-                          style: ButtonStyle(
-                            fixedSize: MaterialStateProperty.all<Size>(
-                              const Size(170, 60),
-                            ),
-                          ),
-                          onPressed: () {
-                            if (state is Loading) return;
-                            if (!phoneRegex
-                                .hasMatch(textController.value.text)) {
-                              context.read<AuthBloc>().add(
-                                    ErrorEvent(
-                                      message: context.l10n.invalidMobileNumber,
-                                    ),
-                                  );
-                              return;
-                            }
-                            context.read<AuthBloc>().add(
-                                  SendOtp(
-                                    phoneNumber:
-                                        '+91${textController.value.text}',
-                                  ),
-                                );
-                          },
-                          child: state is Loading
-                              ? Center(
-                                  child: SizedBox(
-                                    width: 23.toResponsiveWidth(context),
-                                    height: 23.toResponsiveWidth(context),
-                                    child: const CircularProgressIndicator(),
-                                  ),
-                                )
-                              : const Icon(
-                                  Icons.arrow_right_alt_rounded,
-                                  size: 40,
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    return InkWell(
+                      onTap: () {
+                        if (state is Loading) return;
+                        if (!phoneRegex.hasMatch(textController.value.text)) {
+                          context.read<AuthBloc>().add(
+                                ErrorEvent(
+                                  message: context.l10n.invalidMobileNumber,
                                 ),
-                        );
+                              );
+                          return;
+                        }
+                        context.read<AuthBloc>().add(
+                              SendOtp(
+                                phoneNumber: '+91${textController.value.text}',
+                              ),
+                            );
                       },
-                    ),
-                  ],
+                      child: Container(
+                        width: context.screenWidth,
+                        height: 60.toResponsiveHeight(context),
+                        decoration: BoxDecoration(
+                          color: context.appColorScheme.primaryColor,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: state is Loading
+                            ? Center(
+                                child: SizedBox(
+                                  width: 23.toResponsiveWidth(context),
+                                  height: 23.toResponsiveWidth(context),
+                                  child: const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              )
+                            : const Icon(
+                                Icons.arrow_right_alt_rounded,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

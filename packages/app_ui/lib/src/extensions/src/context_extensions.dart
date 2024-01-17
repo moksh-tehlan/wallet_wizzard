@@ -33,6 +33,12 @@ extension ColorThemeExtension on BuildContext {
   }
 
   ColorScheme get colorScheme {
+    return isDarkMode
+        ? TempAppColors.darkColorScheme
+        : TempAppColors.lightColorScheme;
+  }
+
+  AppColorScheme get appColorScheme {
     return isDarkMode ? AppColors.darkColorScheme : AppColors.lightColorScheme;
   }
 }

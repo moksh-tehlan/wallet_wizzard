@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 //ignore_for_file:public_member_api_docs
 
-
 /// Defines the color palette for the App UI Kit.
-abstract class AppColors {
-
+abstract class TempAppColors {
   static const lightColorScheme = ColorScheme(
     brightness: Brightness.light,
     primary: Color(0xFF3C5BA9),
@@ -60,7 +58,8 @@ abstract class AppColors {
     background: Color(0xFF1B1B1F),
     onBackground: Color(0xFFE4E2E6),
     surface: Color(0xFF1B1B1F),
-    onSurface: Color(0xFFE4E2E6),
+    // onSurface: Color(0xFFE4E2E6),
+    onSurface: Colors.white,
     surfaceVariant: Color(0xFF45464F),
     onSurfaceVariant: Color(0xFFC5C6D0),
     outline: Color(0xFF8F909A),
@@ -72,4 +71,50 @@ abstract class AppColors {
     outlineVariant: Color(0xFF45464F),
     scrim: Color(0xFF000000),
   );
+}
+
+abstract class AppColors {
+  static const darkColorScheme = AppColorScheme(
+    background: Colors.black,
+    primaryColor: Color(0xFF4185F4),
+    inputBorderColor: Color(0x1AFFFFFF),
+    labelTextColor: Color(0xFF9A9BAE),
+    inputTextColor: Color(0xFFFFFFFF),
+    appBar: Color(0xFF292929),
+    secondaryAppBar: Color(0xFF333333),
+    onAppBarLabel: Color(0xFF484848),
+  );
+
+  static const lightColorScheme = AppColorScheme(
+    background: Colors.white,
+    primaryColor: Color(0xFF4185F4),
+    inputBorderColor: Color(0x1AFFFFFF),
+    labelTextColor: Color(0xFF9A9BAE),
+    inputTextColor: Color(0xFFFFFFFF),
+    appBar: Color(0xFF292929),
+    secondaryAppBar: Color(0xFF333333),
+    onAppBarLabel: Color(0xFF484848),
+  );
+}
+
+class AppColorScheme {
+  const AppColorScheme({
+    required this.background,
+    required this.primaryColor,
+    required this.inputBorderColor,
+    required this.labelTextColor,
+    required this.inputTextColor,
+    required this.appBar,
+    required this.secondaryAppBar,
+    required this.onAppBarLabel
+  });
+
+  final Color background;
+  final Color primaryColor;
+  final Color inputBorderColor;
+  final Color labelTextColor;
+  final Color inputTextColor;
+  final Color appBar;
+  final Color secondaryAppBar;
+  final Color onAppBarLabel;
 }

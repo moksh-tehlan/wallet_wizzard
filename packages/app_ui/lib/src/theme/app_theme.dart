@@ -12,7 +12,7 @@ class AppTheme {
   ThemeData get darkThemeData {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: AppColors.darkColorScheme,
+      colorScheme: TempAppColors.darkColorScheme,
       textTheme: _textTheme,
     );
   }
@@ -20,7 +20,7 @@ class AppTheme {
   ThemeData get lightThemeData {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: AppColors.lightColorScheme,
+      colorScheme: TempAppColors.lightColorScheme,
       textTheme: _textTheme,
     );
   }

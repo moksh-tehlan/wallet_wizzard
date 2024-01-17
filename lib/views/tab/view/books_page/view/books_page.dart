@@ -2,7 +2,6 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_wizard/views/tab/view/expenses/tabs/expenses_page.dart';
 import 'package:wallet_wizard/views/tab/view/expenses/tabs/income_page.dart';
-import 'package:wallet_wizard/views/tab/view/expenses/tabs/investment_page.dart';
 
 class BooksPage extends StatefulWidget {
   const BooksPage({super.key});
@@ -30,36 +29,48 @@ class _BooksPageState extends State<BooksPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: context.appColorScheme.background,
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: const Icon(Icons.add),
         ),
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: context.appColorScheme.appBar,
           bottom: PreferredSize(
             preferredSize:
-                Size(context.screenWidth, 20.toResponsiveHeight(context)),
-            child: TabBar(
-              padding: EdgeInsets.zero,
-              tabAlignment: TabAlignment.fill,
-              controller: _tabController,
-              tabs: const [
-                Tab(
-                  icon: Icon(Icons.download),
-                  iconMargin: EdgeInsets.only(bottom: 1),
-                  child: Text(
-                    'Credits',
-                    style: TextStyle(fontSize: 16),
-                  ),
+            Size(context.screenWidth, 20.toResponsiveHeight(context)),
+            child: Center(
+              child: Theme(
+                data: ThemeData(
+                  splashColor: Colors.transparent,
                 ),
-                Tab(
-                  icon: Icon(Icons.upload),
-                  iconMargin: EdgeInsets.only(bottom: 1),
-                  child: Text(
-                    'Debts',
-                    style: TextStyle(fontSize: 16),
+                child: TabBar(
+                  controller: _tabController,
+                  isScrollable: true,
+                  labelStyle: context.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                  labelColor: Colors.white,
+                  unselectedLabelStyle: context.textTheme.titleLarge?.copyWith(
+                    fontWeight: AppFontWeight.bold,
                   ),
+                  unselectedLabelColor: Colors.white.withOpacity(0.5),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 34),
+                  // indicatorPadding: EdgeInsets.only(right: 52),
+                  tabs: const [
+                    Tab(
+                      child: Text(
+                        'Credits',
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'Debts',
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
